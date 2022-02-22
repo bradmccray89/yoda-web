@@ -1,16 +1,28 @@
 import AudioPlayer from './AudioPlayer';
-import { useState, useCallback } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { getDatabase, ref, set } from 'firebase/database';
 
-export default function VoiceList({ voiceIntroList, currentUser }) {
+export default function VoiceList({
+	voiceIntroList,
+	discordUser,
+	currentUser,
+}) {
 	const [currentVoiceIntro, setCurrentVoiceIntro] = useState(
 		currentUser.clipName || null
 	);
 	const router = useRouter();
 
+	const discordUserId = discordUser.sub.split('|')[2];
+
+	if (!currentUser) {
+		currentUser = {
+			id: discordUserId,
+			clipName: null,
+		};
+	}
+
 	const refreshData = () => {
-		console.log(router.asPath);
 		router.reload(window.location.pathname);
 	};
 

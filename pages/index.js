@@ -33,7 +33,11 @@ export default function Home({ voiceIntroList, notFound }) {
 				{voiceIntroList.length > 0 ? (
 					<>
 						{currentUser && (
-							<VoiceList voiceIntroList={voiceIntroList} currentUser={currentUser} />
+							<VoiceList
+								voiceIntroList={voiceIntroList}
+								discordUser={user}
+								currentUser={currentUser}
+							/>
 						)}
 					</>
 				) : (
