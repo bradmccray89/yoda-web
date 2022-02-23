@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import { stoRef, getDownloadURL, getStorage } from 'firebase/storage';
 
 export default function AudioPlayer({ voiceIntro }) {
 	var audioElement = useRef(null);
@@ -13,7 +14,7 @@ export default function AudioPlayer({ voiceIntro }) {
 
 		const storage = getStorage();
 
-		const storageRef = ref(storage, 'voice-intro-clips/' + fileName);
+		const storageRef = stoRef(storage, 'voice-intro-clips/' + fileName);
 
 		const src = await getDownloadURL(storageRef).then((url) => url);
 
