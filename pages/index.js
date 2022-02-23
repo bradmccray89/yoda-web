@@ -3,9 +3,9 @@ import { getDatabase, ref as dbRef, get } from 'firebase/database';
 import { useUser } from '@auth0/nextjs-auth0';
 import { useState, useRef, useEffect } from 'react';
 import VoiceList from '../components/VoiceList';
-import initFirebase from '../firebase/initFirebase';
+import firebase from '../firebase/initFirebase';
 
-initFirebase();
+firebase();
 
 export default function Home({ voiceIntroList, notFound }) {
 	const { user, error, isLoading } = useUser();
