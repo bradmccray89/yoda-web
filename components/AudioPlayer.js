@@ -10,11 +10,14 @@ export default function AudioPlayer({ voiceIntro }) {
 
 	const play = async (intro) => {
 		const fileName = intro.name + intro.extension;
-		const src = await fetch(`/api/voiceintro/${fileName}`).then((res) =>
-			res.json()
-		);
 
-		audioElement.current.src = src.downloadURL;
+		const storage = getStorage();
+
+		const storageRef = ref(storage, 'voice-intro-clips/' + fileName);
+
+		const src = await getDownloadURL(storageRef).then((url) => url);
+
+		audioElement.current.src = src;
 		audioElement.current.play();
 	};
 
