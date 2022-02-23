@@ -1,4 +1,7 @@
 import { ref, getDownloadURL, getStorage } from 'firebase/storage';
+import initFirebase from '../firebase/initFirebase';
+
+initFirebase();
 
 export default async function handler(req, res) {
 	const { name } = req.query;
