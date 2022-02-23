@@ -1,7 +1,7 @@
 import AudioPlayer from './AudioPlayer';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import { getDatabase, dbRef, set } from 'firebase/database';
+import { getDatabase, ref, set } from 'firebase/database';
 
 export default function VoiceList({
 	voiceIntroList,
@@ -28,7 +28,7 @@ export default function VoiceList({
 
 	const handleSave = () => {
 		const db = getDatabase();
-		set(dbRef(db, 'users/' + currentUser.id), {
+		set(ref(db, 'users/' + currentUser.id), {
 			id: currentUser.id,
 			clipName: currentVoiceIntro,
 		})
