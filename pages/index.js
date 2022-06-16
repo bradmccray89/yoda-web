@@ -20,6 +20,11 @@ export default function Home({ voiceIntroList, notFound }) {
 				get(databaseRef).then((snapshot) => {
 					if (snapshot.exists()) {
 						setCurrentUser(snapshot.val());
+					} else {
+						setCurrentUser({
+							id: userId,
+							clipName: null,
+						});
 					}
 				});
 			}
